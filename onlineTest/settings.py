@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [ 
     'http://lotus-online-test.herokuapp.com/',
+    'https://lotus-online-test.herokuapp.com',
     'https://lotus-online-test.herokuapp.com/']
 
 CORS_REPLACE_HTTPS_REFERER = True
