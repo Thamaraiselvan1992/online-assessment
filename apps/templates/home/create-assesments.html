@@ -1,0 +1,128 @@
+
+{% extends 'layouts/base.html' %}
+
+{% block title %} Billing {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block content %}
+<div class="container-fluid py-4">
+  <section>
+    <div class="page-header section-height-75">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 d-flex flex-column mx-auto">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left bg-transparent">
+                <h4 class="text-info text-gradient">
+                  Soft Dashboard Django - Register
+                </h4>
+                <p class="mb-0">
+                    {% if msg %}
+                        {{ msg | safe }}
+                    {% else %}
+                        Add your credentials
+                    {% endif %}                 
+                </p>
+              </div>
+              <div class="card-body">
+                <form role="form text-left" method="post" action="">
+                  
+                  {% csrf_token %}
+
+                  {% csrf_token %}
+
+                  <label>Assesment Name</label>
+                  <div class="mb-3">
+                    <input class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="{{form.title.name}}">
+                  </div>
+                  <span class="text-error">{{ form.title.errors }}</span>
+
+                  <label>Description</label>
+                  <div class="mb-3">
+                    <textarea name="{{form.description.name}}" id="" cols="30" rows="10" class="form-control"></textarea>
+                    
+                  </div>
+                  <span class="text-error">{{ form.description.errors }}</span>
+                  <div class="row">
+                      <div class="col-md-4">
+                        <label>Times</label>
+                        <div class="mb-3">
+                          <input type="time" class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="times">
+                        </div>
+                    </div>
+                      <div class="col-md-4">
+                        <label>Marks</label>
+                        <div class="mb-3">
+                          <input class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="mark">
+                          <small>single questions mark</small>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-3 pt-3"><button type="button" class="btn btn-info add-field">Add New Questions</button></div> -->
+                  </div>
+                  <div class="multi-field-wrapper">
+                    <div class="multi-fields">
+                      <div class="multi-field">
+                  <label>Question</label>
+                  <div class="mb-3">
+                    <textarea name="questions[]" id="" cols="30" rows="5" class="form-control"></textarea>
+                  </div>
+                    <div class="mb-3">
+                        <label>Option A</label>
+                        <textarea name="option_a[]" id="" cols="30" rows="2" class="form-control"></textarea>
+                        <label>Option B</label>
+                        <textarea name="option_b[]" id="" cols="30" rows="2" class="form-control"></textarea>
+                        <label>Option C</label>
+                        <textarea name="option_c[]" id="" cols="30" rows="2" class="form-control"></textarea>
+                        <label>Option D</label>
+                        <textarea name="option_d[]" id="" cols="30" rows="2" class="form-control"></textarea>
+                    </div>
+    
+                    <button type="button" class="remove-field btn btn-danger">Remove</button>
+                </div>
+                <button type="button" class="btn btn-info add-field">Add New Questions</button>
+                </div>
+                </div>
+                  <div class="text-center">
+                    <button type="submit" name="register" class="btn bg-gradient-info w-100 mt-4 mb-0">Create Assesment</button>
+                  </div>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   
+<script>
+var win = navigator.platform.indexOf('Win') > -1;
+if (win && document.querySelector('#sidenav-scrollbar')) {
+  var options = {
+    damping: '0.5'
+  }
+  Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+}
+$('.multi-field-wrapper').each(function() {
+    var $wrapper = $('.multi-fields', this);
+    $(".add-field", $(this)).click(function(e) {
+        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+    });
+    $('.multi-field .remove-field', $wrapper).click(function() {
+        if ($('.multi-field', $wrapper).length > 1)
+            $(this).parent('.multi-field').remove();
+    });
+});
+</script>
+
+{% endblock javascripts %}
