@@ -36,15 +36,7 @@ ALLOWED_HOSTS = [
    'lotus-online-test.herokuapp.com/',
    '127.0.0.1',
 ]
-CSRF_TRUSTED_ORIGINS = [
-    '*',
-    '0.0.0.0',
-   'http://lotus-online-test.herokuapp.com/',
-   'https://lotus-online-test.herokuapp.com/',
-   'lotus-online-test.herokuapp.com',
-   'lotus-online-test.herokuapp.com/',
-   '127.0.0.1',
-]
+CSRF_TRUSTED_ORIGINS = ['https://lotus-online-test.herokuapp.com/']
 
 # Application definition
 
