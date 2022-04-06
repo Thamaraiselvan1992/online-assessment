@@ -28,9 +28,13 @@ SECRET_KEY = 'django-insecure-l#d(fmf21(7wii*qo-22&jsl@2cpu@+a=+8+it+bqh@&y$xj!6
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0'
-    'lotus-online-test.herokuapp.com',
-    '127.0.0.1'
+   '*',
+    '0.0.0.0',
+   'http://lotus-online-test.herokuapp.com/',
+   'https://lotus-online-test.herokuapp.com/',
+   'lotus-online-test.herokuapp.com',
+   'lotus-online-test.herokuapp.com/',
+   '127.0.0.1',
 ]
 
 
