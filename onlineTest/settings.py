@@ -27,7 +27,11 @@ SECRET_KEY = 'django-insecure-l#d(fmf21(7wii*qo-22&jsl@2cpu@+a=+8+it+bqh@&y$xj!6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0'
+    'lotus-online-test.herokuapp.com',
+    '127.0.0.1'
+]
 
 
 # Application definition
