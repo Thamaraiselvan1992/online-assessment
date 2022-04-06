@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,7 +38,14 @@ ALLOWED_HOSTS = [
    '127.0.0.1',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://lotus-online-test.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = [ 
+    '*',
+    '0.0.0.0',
+    'http://lotus-online-test.herokuapp.com/',
+    'https://lotus-online-test.herokuapp.com/',
+    'lotus-online-test.herokuapp.com',
+    'lotus-online-test.herokuapp.com/',
+    '127.0.0.1',]
 
 CORS_REPLACE_HTTPS_REFERER = True
 
