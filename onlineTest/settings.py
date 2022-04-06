@@ -36,7 +36,19 @@ ALLOWED_HOSTS = [
    'lotus-online-test.herokuapp.com/',
    '127.0.0.1',
 ]
+
 CSRF_TRUSTED_ORIGINS = ['https://lotus-online-test.herokuapp.com/']
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+
+CORS_ORIGIN_WHITELIST = (
+    'https://lotus-online-test.herokuapp.com/',
+    'lotus-online-test.herokuapp.com',
+    'herokuapp.com',
+)
+
 
 # Application definition
 
