@@ -53,7 +53,7 @@ class BugAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at', 'updated_at', 'created_by']
     fieldsets = (               # Edition form
         (None,                   {'fields': ('task',
-                                             ('project','assign_user'),('priority','type'),('descriptions','attachment'),('remark','status'))}),
+                                             ('project','assign_user'),('priority','type'),('descriptions'),('remark','status'))}),
                                              (_('More...'), {'fields': (('created_at', 'updated_at'), 'created_by'), 'classes': ('collapse',)}),
         
     )
