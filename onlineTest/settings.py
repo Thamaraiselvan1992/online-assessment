@@ -31,25 +31,25 @@ DEBUG = True
 ALLOWED_HOSTS = [
    '*',
     '0.0.0.0',
-   'http://lotus-online-test.herokuapp.com/',
-   'https://lotus-online-test.herokuapp.com/',
-   'lotus-online-test.herokuapp.com',
-   'lotus-online-test.herokuapp.com/',
+   'http://vcall-flask.herokuapp.com/',
+   'https://vcall-flask.herokuapp.com/',
+   'vcall-flask.herokuapp.com',
+   'vcall-flask.herokuapp.com/',
    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [ 
-    'http://lotus-online-test.herokuapp.com/',
-    'https://lotus-online-test.herokuapp.com',
-    'https://lotus-online-test.herokuapp.com/']
+    'http://vcall-flask.herokuapp.com/',
+    'https://vcall-flask.herokuapp.com',
+    'https://vcall-flask.herokuapp.com/']
 
 CORS_REPLACE_HTTPS_REFERER = True
 
 CSRF_COOKIE_DOMAIN = 'herokuapp.com'
 
 CORS_ORIGIN_WHITELIST = (
-    'https://lotus-online-test.herokuapp.com/',
-    'lotus-online-test.herokuapp.com',
+    'https://vcall-flask.herokuapp.com/',
+    'vcall-flask.herokuapp.com',
     'herokuapp.com',
 )
 
