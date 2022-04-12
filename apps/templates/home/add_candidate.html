@@ -1,0 +1,164 @@
+
+{% extends 'layouts/base.html' %}
+
+{% block title %} Billing {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block content %}
+<div class="container-fluid py-4">
+  <section>
+    <div class="page-header section-height-75">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 d-flex flex-column mx-auto">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left bg-transparent">
+                <h4 class="text-info text-gradient">
+                  Add Candidate
+                </h4>
+                <p class="mb-0">
+                    {% if msg %}
+                        {{ msg | safe }}
+                    {% else %}
+                        Fill the Fields
+                    {% endif %}                 
+                </p>
+              </div>
+              <div class="card-body" >
+             
+                  
+                  {% csrf_token %}
+
+                  {% csrf_token %}
+                  <div  id="btn1" type="button" class="btn btn-info" data-card="card1">
+                  <label>Assessment Name</label>
+                  <div class="mb-3">
+                    {{ assesment.title}}
+                  </div>
+               
+
+                  <label>Description</label>
+                  <div class="mb-3">
+                    {{ assesment.description|linebreaksbr}}
+                    
+                  </div>
+                </div>
+                <div id="card1" class="card" style="padding: 20px;">
+                  <span class="text-error">{{ assesment.question|linebreaksbr}}</span>
+                 
+                  {% for qus in questions %}
+                  <!-- {{qus}} -->
+                      <div class="row pt-3">
+                        <div class="col-md-10">
+                            <label>{{forloop.counter}} .Question</label>
+                            <div style="padding-left: 20px;"><strong>{{qus.question}}</strong></div>
+                        
+                        
+                      
+                        <div class="row">
+                            {% for opt in qus.options %}
+                          <div class="col-md-6">
+                            <label>Option {{forloop.counter}}</label>
+                            <div style="padding-left: 20px;">{{opt}}</div>
+                          </div>
+                          {% endfor %}
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Answer</label>
+                         
+                            <div><strong style="padding-left: 20px;"></strong></div>
+                          </div>
+                          <div class="col-md-6">
+                            
+                          </div>
+                        </div>
+                      </div>
+                
+                        <div class="col-md-1">
+                            <label>Mark</label>
+                            <div><strong>{{qus.marks}}</strong></div>
+                        </div>
+                        <div class="col-md-1">
+                            <label>Time</label>
+                        <div><strong>{{qus.times}}</strong></div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                  
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="padding: 20px;">
+                    <h4 class="text-center">Candidate Details</h4>
+                    <hr>
+                    <div class="card2">
+                    <form role="form text-left" method="post" action="">
+
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6"><label>Candidate Name</label>
+                                <div class="mb-3">
+                                  <input class="form-control" placeholder="Candidate Name" aria-label="Candidate Name" name="{{form.candidate_name.name}}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6"><label>Candidate Email</label>
+                                <div class="mb-3">
+                                  <input class="form-control" placeholder="Candidate Email" aria-label="Candidate Email" name="{{form.candidate_email.name}}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"><label>Candidate Mobile</label>
+                                <div class="mb-3">
+                                  <input class="form-control" placeholder="Candidate Mobile" aria-label="Candidate Mobile" name="{{form.candidate_mobile.name}}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6"><label>Reference</label>
+                                <div class="mb-3">
+                                    <input class="form-control" placeholder="Reference" aria-label="Reference" name="{{form.reference.name}}" >
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="assessment_id" value="{{ assesment.id}}">
+
+                        </div>
+                        <div class="text-center"> <button type="submit" class="btn btn-info">Send link</button></div>
+                       
+                       
+                        </form>
+                    </div>
+                </div>
+              
+              </div>
+              
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
+<script>
+    $("#card1").hide();
+    $("#card2").hide();
+
+
+		$(".btn").on('click',function() {
+			var cardId = $(this).attr('data-card');
+			$('#'+cardId).toggle(300);
+		})
+
+			
+</script>
+{% endblock javascripts %}

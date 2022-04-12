@@ -15,32 +15,30 @@
             <div class="card card-plain">
               <div class="card-header pb-0 text-left bg-transparent">
                 <h4 class="text-info text-gradient">
-                  Soft Dashboard Django - Register
+                  Assessment Creation
                 </h4>
                 <p class="mb-0">
                     {% if msg %}
                         {{ msg | safe }}
                     {% else %}
-                        Add your credentials
+                        Fill the Fields
                     {% endif %}                 
                 </p>
               </div>
               <div class="card-body">
                 <form role="form text-left" method="post" action="">
-                  
-                  {% csrf_token %}
 
                   {% csrf_token %}
 
-                  <label>Assesment Name</label>
+                  <label>Assessment Name</label>
                   <div class="mb-3">
-                    <input class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="{{form.title.name}}">
+                    <input class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="{{form.title.name}}" required>
                   </div>
                   <span class="text-error">{{ form.title.errors }}</span>
 
                   <label>Description</label>
                   <div class="mb-3">
-                    <textarea name="{{form.description.name}}" id="" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="{{form.description.name}}" id="" cols="30" rows="4" class="form-control" required></textarea>
                     
                   </div>
                   <span class="text-error">{{ form.description.errors }}</span>
@@ -48,13 +46,13 @@
                       <div class="col-md-4">
                         <label>Times</label>
                         <div class="mb-3">
-                          <input type="time" class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="times">
+                          <input type="time" class="form-control" placeholder="Time" aria-label="Assesment Name" name="times" required>
                         </div>
                     </div>
                       <div class="col-md-4">
                         <label>Marks</label>
                         <div class="mb-3">
-                          <input class="form-control" placeholder="Assesment Name" aria-label="Assesment Name" name="mark">
+                          <input class="form-control" placeholder="Mark" aria-label="Mark" name="mark" required>
                           <small>single questions mark</small>
                         </div>
                       </div>
@@ -62,27 +60,57 @@
                   </div>
                   <div class="multi-field-wrapper">
                     <div class="multi-fields">
+                      <div class="row">
+                        <div class="col-md-11">
                       <div class="multi-field">
-                  <label>Question</label>
-                  <div class="mb-3">
-                    <textarea name="questions[]" id="" cols="30" rows="5" class="form-control"></textarea>
-                  </div>
-                    <div class="mb-3">
-                        <label>Option A</label>
-                        <textarea name="option_a[]" id="" cols="30" rows="2" class="form-control"></textarea>
-                        <label>Option B</label>
-                        <textarea name="option_b[]" id="" cols="30" rows="2" class="form-control"></textarea>
-                        <label>Option C</label>
-                        <textarea name="option_c[]" id="" cols="30" rows="2" class="form-control"></textarea>
-                        <label>Option D</label>
-                        <textarea name="option_d[]" id="" cols="30" rows="2" class="form-control"></textarea>
+                      <label>Question</label>
+                      
+                        <textarea name="questions[]" id="" cols="30" rows="5" class="form-control" required></textarea>
+                      
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Option A</label>
+                          <textarea name="option_a[]" id="" cols="30" rows="2" class="form-control" required></textarea>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Option B</label>
+                          <textarea name="option_b[]" id="" cols="30" rows="2" class="form-control" required></textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Option C</label>
+                          <textarea name="option_c[]" id="" cols="30" rows="2" class="form-control" required></textarea>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Option D</label>
+                          <textarea name="option_d[]" id="" cols="30" rows="2" class="form-control" required></textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Answer</label>
+                            <select name="answer[]" id="" class="form-control" required>
+                              <option value="0">Option A</option>
+                              <option value="1">Option B</option>
+                              <option value="2">Option C</option>
+                              <option value="3">Option D</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            
+                          </div>
+                        </div>
+                        
+                        <button type="button" class="remove-field btn btn-danger">Remove</button>
+                      </div>
                     </div>
-    
-                    <button type="button" class="remove-field btn btn-danger">Remove</button>
-                </div>
-                <button type="button" class="btn btn-info add-field">Add New Questions</button>
-                </div>
-                </div>
+                    <div class="col-md-1">
+                      <button type="button" class="btn btn-info add-field">Add New Questions</button>
+                    </div>
+                  </div>
+                    </div>
+                  </div>
                   <div class="text-center">
                     <button type="submit" name="register" class="btn bg-gradient-info w-100 mt-4 mb-0">Create Assesment</button>
                   </div>
