@@ -60,7 +60,7 @@ class Bug(models.Model):
     assign_user  =models.ForeignKey(User,
                                on_delete=models.CASCADE)
     descriptions =models.TextField()
-    # attachment = models.ImageField(upload_to='images',null=True, blank=True)
+    attachment = models.ImageField(upload_to='images',null=True, blank=True)
     remark =models.CharField(max_length=500,null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
