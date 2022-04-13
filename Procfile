@@ -1,1 +1,1 @@
-web: gunicorn project-bugstracker.wsgi --log-file -
+web: gunicorn project-bugstracker.wsgi
