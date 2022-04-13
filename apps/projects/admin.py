@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
+
 @receiver(pre_delete, sender=User)
 def delete_user(sender, instance, **kwargs):
     if instance.is_superuser:
