@@ -23,5 +23,11 @@ urlpatterns = [
     path("", include("apps.authentication.urls")), # Auth routes - login / register
     path("", include("apps.home.urls"))  
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+admin.site.site_header = "Erisn Project Bugs Management"
+admin.site.site_title = "Erisn Project Bugs Management Portal"
+admin.site.index_title = "Welcome to Erisn Project Bugs Management"
