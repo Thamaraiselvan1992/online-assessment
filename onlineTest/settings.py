@@ -50,6 +50,7 @@ CSRF_COOKIE_DOMAIN = 'herokuapp.com'
 CORS_ORIGIN_WHITELIST = (
     'https://vcall-flask.herokuapp.com/',
     'vcall-flask.herokuapp.com',
+    'vcall-flask.herokuapp.com/',
     'herokuapp.com',
 )
 
