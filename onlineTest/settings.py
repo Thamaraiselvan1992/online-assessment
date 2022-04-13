@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,10 +28,39 @@ SECRET_KEY = 'django-insecure-l#d(fmf21(7wii*qo-22&jsl@2cpu@+a=+8+it+bqh@&y$xj!6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
+ALLOWED_HOSTS = [
+   '*',
+'0.0.0.0',
+   'http://vcall-flask.herokuapp.com/',
+   'https://vcall-flask.herokuapp.com/',
+   'vcall-flask.herokuapp.com',
+   'vcall-flask.herokuapp.com/',
+   '127.0.0.1',
+]
+# CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [ 
+    'http://vcall-flask.herokuapp.com/',
+    'https://vcall-flask.herokuapp.com',
+    'https://vcall-flask.herokuapp.com/']
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://vcall-flask.herokuapp.com'
+# ]
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+
+CORS_ORIGIN_WHITELIST = (
+    'https://vcall-flask.herokuapp.com/',
+    'vcall-flask.herokuapp.com',
+    'vcall-flask.herokuapp.com/',
+    'herokuapp.com',
+)
 
 
-
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -132,6 +160,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
