@@ -50,7 +50,7 @@ CSRF_TRUSTED_ORIGINS = [
 # ]
 CORS_REPLACE_HTTPS_REFERER = True
 
-CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+CSRF_COOKIE_DOMAIN = ['herokuapp.com','vcall-flask.herokuapp.com','vcall-flask.herokuapp.com/']
 
 CORS_ORIGIN_WHITELIST = (
     'https://vcall-flask.herokuapp.com/',
