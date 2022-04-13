@@ -162,9 +162,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
-
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE= False
 # STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(CORE_DIR,'apps/static')
 STATIC_URL = '/static/'
