@@ -18,7 +18,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(CORE_DIR, 'media')
-
+STATIC_DIR =os.path.join(CORE_DIR,'apps/static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
    '*',
-    '0.0.0.0',
+'0.0.0.0',
    'http://vcall-flask.herokuapp.com/',
    'https://vcall-flask.herokuapp.com/',
    'vcall-flask.herokuapp.com',
@@ -159,18 +159,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(CORE_DIR,'apps/static')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(CORE_DIR,'apps/static')
-# Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (
-#     os.path.join(CORE_DIR, 'apps/static'),
-# )
-# if DEBUG:
-#    STATICFILES_DIRS = [
-#    os.path.join(CORE_DIR, 'apps/static'),
-#    ]
-# else:
-#    STATIC_ROOT = os.path.join(CORE_DIR,'static')
+STATICFILES_DIRS=[STATIC_DIR]
 
 MEDIA_URL = 'media/'
 # Default primary key field type
