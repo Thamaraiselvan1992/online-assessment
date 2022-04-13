@@ -27,25 +27,25 @@ SECRET_KEY = 'django-insecure-l#d(fmf21(7wii*qo-22&jsl@2cpu@+a=+8+it+bqh@&y$xj!6
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = [
-#    '*',
-# '0.0.0.0',
-#    'http://vcall-flask.herokuapp.com/',
-#    'https://vcall-flask.herokuapp.com/',
-#    'vcall-flask.herokuapp.com',
-#    'vcall-flask.herokuapp.com/',
-#    '127.0.0.1',
-# ]
 
-# CSRF_TRUSTED_ORIGINS = [ 
-#     'http://vcall-flask.herokuapp.com/',
-#     'https://vcall-flask.herokuapp.com',
-#     'https://vcall-flask.herokuapp.com/']
+ALLOWED_HOSTS = [
+   '*',
+'0.0.0.0',
+   'http://vcall-flask.herokuapp.com/',
+   'https://vcall-flask.herokuapp.com/',
+   'vcall-flask.herokuapp.com',
+   'vcall-flask.herokuapp.com/',
+   '127.0.0.1',
+]
 
-# CORS_REPLACE_HTTPS_REFERER = True
+CSRF_TRUSTED_ORIGINS = [ 
+    'http://vcall-flask.herokuapp.com/',
+    'https://vcall-flask.herokuapp.com',
+    'https://vcall-flask.herokuapp.com/']
 
-# CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_COOKIE_DOMAIN = 'herokuapp.com'
 
 # CORS_ORIGIN_WHITELIST = (
 #     'https://vcall-flask.herokuapp.com/',
@@ -53,6 +53,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'vcall-flask.herokuapp.com/',
 #     'herokuapp.com',
 # )
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
