@@ -1,32 +1,99 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Billing {% endblock title %}
+{% block title %} UI Tables {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
-<div class="container-fluid py-4">
-<h2>hiiiiiiiii</h2>
+  <div class="container-fluid py-4">
 
-<!-- {% include "includes/footer.html" %} -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Projects</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Completion Date</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in projects %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                       
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{ p.project__project_name}}</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ p.project__completion_date}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-sm bg-gradient-success">{{ p.project__created_at}}</span>
+                    </td>
+                    
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+              {% if projects.has_other_pages %}
+                        <ul class="pagination">
+                            {% if projects.has_previous %}
+                            <li><a href="?page={{ projects.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                            {% endif %}
+                            {% for i in projects.paginator.page_range %}
+                            {% if projects.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if projects.has_next %}
+                            <li><a href="?page={{ projects.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                            {% endif %}
+                        </ul>
+                        
+                        {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
+
+    {% include "includes/footer.html" %}
+    
+  </div>
 
 {% endblock content %}
 
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
 
-<script>
-var win = navigator.platform.indexOf('Win') > -1;
-if (win && document.querySelector('#sidenav-scrollbar')) {
-  var options = {
-    damping: '0.5'
-  }
-  Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-}
-</script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
 
 {% endblock javascripts %}

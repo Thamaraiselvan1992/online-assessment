@@ -10,15 +10,25 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.db.models import Count
 from apps.home.forms import AssesmentForm, CandidateForm
 from apps.home.models import Assesment, Candidate, CandidateAssessment
+from apps.projects.models import Bug,Status,Project
 
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {'segment': 'index'}
+    if request.user.is_superuser == 1:
+            post =Bug.objects.all().order_by('-id')[:10]
+            project =Bug.objects.select_related('project').values('project__created_at','project__project_name','project__completion_date').all().annotate(total=Count('project')).order_by('project')[:10]
+            bugCount=Bug.objects.select_related('status').values('status','status__status_name').all().annotate(total=Count('status')).order_by('status')
 
+    else:
+            post =Bug.objects.filter(assign_user= request.user.id).order_by('-id')[:10]
+            project =Bug.objects.select_related('project').values('project__created_at','project__project_name','project__completion_date').filter(assign_user= request.user.id).annotate(total=Count('project')).order_by('project')[:10]
+            bugCount=Bug.objects.select_related('status').filter(assign_user=request.user.id).values('status','status__status_name').annotate(total=Count('status')).order_by('status')
+            # bugCount =Bug.objects.get(assign_user= request.user.id).count()
+    context = {'segment': 'index','bcount':bugCount,'bugs':post,'project':project}
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
 

@@ -7,19 +7,25 @@ from django.contrib.auth.models import User
 
 class Priority(models.Model):
    
-    priority_name =models.CharField(max_length=200)
+    priority_name =models.CharField(max_length=200,unique=True)
+    class Meta:
+        verbose_name_plural = "2. Priorities"
     def __str__(self):
         return self.priority_name
 
 class Type(models.Model):
    
-    type_name =models.CharField(max_length=200)
+    type_name =models.CharField(max_length=200,unique=True)
+    class Meta:
+        verbose_name_plural = "3. Bug Types"
     def __str__(self):
         return self.type_name
 
 class Status(models.Model):
    
-    status_name =models.CharField(max_length=200)
+    status_name =models.CharField(max_length=200,unique=True)
+    class Meta:
+        verbose_name_plural = "4. Status"
     def __str__(self):
         return self.status_name
 
@@ -28,7 +34,7 @@ class Status(models.Model):
 #     cnmae =models.CharField(max_length=200)
 class Project(models.Model):
 
-    project_name =models.CharField(max_length=200)
+    project_name =models.CharField(max_length=200,unique=True)
     descriptions =models.TextField()
     # assign  =models.ForeignKey(User,
     #                            on_delete=models.CASCADE,
@@ -41,6 +47,8 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_by =models.ForeignKey(User, null=True, blank=True,
     on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = "1. Projects"
     def __str__(self):
         return self.project_name
 
@@ -65,7 +73,8 @@ class Bug(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by =models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE,related_name='assign_auth_user')
-
+    class Meta:
+        verbose_name_plural = "5. Bugs"
     def __str__(self):
         return self.task
 

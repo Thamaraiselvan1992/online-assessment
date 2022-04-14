@@ -111,7 +111,7 @@ class PostAdmin(admin.ModelAdmin):
     # def render_change_form(self, request, context, *args, **kwargs):
     #     context['adminform'].form.fields['assign'].queryset = User.objects.filter(is_superuser=0)
     #     return super(BugAdmin, self).render_change_form(request, context, *args, **kwargs)
-   
+
 
 admin.site.register(Project,PostAdmin)
 admin.site.register(Bug,BugAdmin)
@@ -125,7 +125,7 @@ class BugLog(LogEntry):
 
     class Meta:
         proxy = True
-        verbose_name_plural = "Bugs Reports"
+        verbose_name_plural = "6. Bugs Log"
 @admin.register(LogEntry)
 class LogAdmin(admin.ModelAdmin):
     """Create an admin view of the history/log table"""
