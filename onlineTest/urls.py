@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
     path("", include("apps.authentication.urls")), # Auth routes - login / register
-    path("", include("apps.home.urls"))  
+    path("", include("apps.home.urls")),  
+    path("portal/", include("apps.projects.urls"))  
 ]
 
 if settings.DEBUG:
