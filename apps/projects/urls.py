@@ -5,7 +5,10 @@ urlpatterns = [
 
     path('projects/', views.projectlist,name='project'),
     path('bugs/', views.buglist,name='bugs'),
-    path('buglogs/', views.bugloglist,name='buglog')
-
+    path('buglogs/', views.bugloglist,name='buglog'),
+    path('likepost', views.likePost, name='likepost'),
+    path('assignProjectUser', views.assignProjectUser, name='assignProjectUser'),
+    path('assignProjectModels', views.assignProjectModels, name='assignProjectModels')
+    
 
 ]

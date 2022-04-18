@@ -1,7 +1,7 @@
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import admin
-
-from apps.projects.models import Bug, Project,Priority,Status,Type
+from django.utils.html import format_html
+from apps.projects.models import Bug, Project,Priority, ProjectModule,Status,Type
 # Register your models here.
 # from django_summernote.admin import SummernoteModelAdmin
 from django.contrib.admin.models import LogEntry, DELETION
@@ -53,7 +53,7 @@ class BugAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at', 'updated_at', 'created_by']
     fieldsets = (               # Edition form
         (None,                   {'fields': ('task',
-                                             ('project','assign_user'),('priority','type'),('descriptions','attachment'),('remark','status'))}),
+                                             ('project','project_module'),('assign_user','priority','type'),('descriptions','attachment'),('remark','status'))}),
                                              (_('More...'), {'fields': (('created_at', 'updated_at'), 'created_by'), 'classes': ('collapse',)}),
         
     )
@@ -64,7 +64,8 @@ class BugAdmin(admin.ModelAdmin):
         if getattr(obj, 'created_by', None) is None:
             obj.created_by = request.user
         obj.save()
-        
+
+
     def render_change_form(self, request, context, *args, **kwargs):
          context['adminform'].form.fields['assign_user'].queryset = User.objects.filter(is_superuser=0)
          return super(BugAdmin, self).render_change_form(request, context, *args, **kwargs)
@@ -88,31 +89,52 @@ class BugAdmin(admin.ModelAdmin):
     def remark(self, instance):
 
         return "<span class='errors'>I can't determine this address.</span>"
+    class Media:
+        js = ['one/js/bug.js',]
 
+# class ProjectModuleAdmin(admin.TabularInline):
+#     model = ProjectModule
+#     extra = 0
 
 #Project Models
 class PostAdmin(admin.ModelAdmin):
     search_fields = ['project_name', 'descriptions','completion_date']
-    list_display = ('project_name','created_by','completion_date')
-    # fields = ['project_name','descriptions','completion_date']
-
+    list_display = ('project_name','created_by','completion_date','assigned_users')
     readonly_fields =['created_by']
     list_per_page = 10
-    # fieldsets = (               # Edition form
-    #     (None,                   {'fields': ('project_name', 'descriptions',
-    #                                          ('assign', 'completion_date'))}),
-        
-    # )
+
+    def assigned_users(self, obj):
+        return "\n,".join([p.username for p in obj.assign.all()])
+
     def save_model(self, request, obj,form,change):
         if getattr(obj, 'created_by', None) is None:
             obj.created_by = request.user
         obj.save()
 
-    # def render_change_form(self, request, context, *args, **kwargs):
-    #     context['adminform'].form.fields['assign'].queryset = User.objects.filter(is_superuser=0)
-    #     return super(BugAdmin, self).render_change_form(request, context, *args, **kwargs)
+    def render_change_form(self, request, context, *args, **kwargs):
+         context['adminform'].form.fields['assign'].queryset = User.objects.filter(is_superuser=0)
+         return super(PostAdmin, self).render_change_form(request, context, *args, **kwargs)
 
 
+class ProjectModuleAdmin(admin.ModelAdmin):
+    search_fields = ['project','project_module']
+    readonly_fields  =['id',]
+    list_display = ('project','project_module')
+    list_per_page = 10
+  
+    def save_model(self, request, obj,form,change):
+        if getattr(obj, 'created_by', None) is None:
+            obj.created_by = request.user
+        obj.save()
+ 
+    def render_change_form(self, request, context, *args, **kwargs):
+         context['adminform'].form.fields['assign_module_user'].queryset = User.objects.filter(is_superuser=0)  
+         return super(ProjectModuleAdmin, self).render_change_form(request, context, *args, **kwargs)
+
+    class Media:
+        js = ['one/js/base.js',]
+
+admin.site.register(ProjectModule,ProjectModuleAdmin)
 admin.site.register(Project,PostAdmin)
 admin.site.register(Bug,BugAdmin)
 admin.site.unregister(User)
